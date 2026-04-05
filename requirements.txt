@@ -1,0 +1,42 @@
+# Libraries
+import numpy as np
+import pandas as pd
+import gymnasium as gym
+import matplotlib.pyplot as plt
+
+
+# Environment Inspection Function
+def inspect_environment(env_name):
+
+    env = gym.make(env_name)
+
+    print(f"\nEnvironment: {env_name}")
+    print("-"*40)
+
+    obs_space = env.observation_space
+    act_space = env.action_space
+
+    print("Observation Space:", obs_space)
+    print("Action Space:", act_space)
+
+    # Inspecting space details
+    if isinstance(obs_space, gym.spaces.Discrete):
+        print("Observation Type: Discrete")
+        print("Number of states:", obs_space.n)
+
+    elif isinstance(obs_space, gym.spaces.Box):
+        print("Observation Type: Continuous")
+        print("Shape:", obs_space.shape)
+        print("Bounds:", obs_space.low, obs_space.high)
+
+    # Getting Action space details
+    if isinstance(act_space, gym.spaces.Discrete):
+        print("Action Type: Discrete")
+        print("Number of actions:", act_space.n)
+
+    elif isinstance(act_space, gym.spaces.Box):
+        print("Action Type: Continuous")
+        print("Shape:", act_space.shape)
+        print("Bounds:", act_space.low, act_space.high)
+
+    env.close()
